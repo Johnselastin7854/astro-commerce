@@ -2,11 +2,12 @@
 interface Props {
   title: string;
 }
-
+import Nav from "../components/Nav.astro"
 const description = "Astro and Supabase demo app";
-const { title } = Astro.props;
-const ogImageURL = new URL("hero.png", Astro.site).href;
-const canonicalURL = new URL(Astro.url).href;
+          const props = Astro.props
+          const { title } = Astro.props;
+// const ogImageURL = new URL("hero.png", Astro.site).href;
+// const canonicalURL = new URL(Astro.url).href;
 ---
 
 <html lang="en" class="h-full w-full">
@@ -17,14 +18,17 @@ const canonicalURL = new URL(Astro.url).href;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta property="twitter:image" content={ogImageURL} />
+    <!-- <meta property="twitter:image" content={ogImageURL} /> -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="og:image" content={ogImageURL} />
+    <!-- <meta property="og:image" content={ogImageURL} /> -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+    <!-- <meta property="og:url" content={canonicalURL} /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   </head>
   <body
     class="flex flex-col h-full w-full dark:bg-zinc-900 bg-zinc-50 dark:text-zinc-100"
@@ -33,8 +37,14 @@ const canonicalURL = new URL(Astro.url).href;
       <div
         class="flex items-baseline justify-end sm:justify-between p-4 max-w-screen-xl mx-auto"
       >
-        <a href="/" class="hidden sm:block font-semibold dark:text-white"
-          >Astro</a
+        <a href="/" class="hidden sm:block font-semibold dark:text-white  items-center "
+          > 
+          <span class="flex items-center gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+            <path fill="currentColor" d="M4.005 16V4h-2V2h3a1 1 0 0 1 1 1v12h12.438l2-8H8.005V5h13.72a1 1 0 0 1 .97 1.243l-2.5 10a1 1 0 0 1-.97.757H5.004a1 1 0 0 1-1-1m2 7a2 2 0 1 1 0-4a2 2 0 0 1 0 4m12 0a2 2 0 1 1 0-4a2 2 0 0 1 0 4" />
+          </svg>
+          Astro Commerce
+        </span></a
         >
         <div>
           <ul class="font-medium flex items-baseline gap-8">
@@ -58,6 +68,7 @@ const canonicalURL = new URL(Astro.url).href;
         </div>
       </div>
     </nav> -->
+    <Nav/>
     <slot />
   </body>
 </html>
