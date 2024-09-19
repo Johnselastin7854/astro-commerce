@@ -1,0 +1,64 @@
+---
+const data = [
+  "https://images.unsplash.com/photo-1508427953056-b00b8d78ebf5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1508427953056-b00b8d78ebf5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1507553532144-b9df5e38c8d1?q=80&w=1826&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+const props = Astro.props
+---
+
+<section class="slider h-[calc(100vh-80px)] w-screen relative overflow-x-hidden">
+  <!-- Container that holds the images -->
+  <div class="slider-container flex w-[300vw] h-full transition-transform duration-1000 ease-in-out">
+    <img src={data[0]} alt="Slide 1" class="w-screen h-full object-cover" />
+    <img src={data[1]} alt="Slide 2" class="w-screen h-full object-cover" />
+    <img src={data[2]} alt="Slide 3" class="w-screen h-full object-cover" />
+  </div>
+
+  <!-- Icons for navigation -->
+  <div class=" absolute left-[50%] right-0 bottom-5 flex gap-2 mx-auto">
+    <div class=" prev  w-12 h-12 border rounded-md border-gray-400 bg-gray-500 text-[25px] flex items-center justify-center cursor-pointer " >
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+            <path fill="currentColor" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2m0 9V8l-4 4l4 4v-3h4v-2z" />
+        </svg>
+    </div>
+    <div class="next w-12 h-12 border rounded-md border-gray-400 flex items-center justify-center bg-gray-500 text-[25px] cursor-pointer ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+            <path fill="currentColor" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2m0 9H8v2h4v3l4-4l-4-4z" />
+        </svg>
+    </div>
+  </div>
+</section>
+
+
+<script>
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    const sliderContainer = document.querySelector(".slider-container") as HTMLElement;
+    let currentSlide =0;
+    console.log(currentSlide,"curr")
+
+
+function updateSlide(newSlide) {
+  currentSlide = newSlide;
+  sliderContainer.style.transform = `translateX(-${currentSlide * 100}vw)`;
+}
+
+function nextSlide() {
+  const newSlide = currentSlide === 2 ? 0 : currentSlide + 1;
+  updateSlide(newSlide);
+  console.log(currentSlide)
+  console.log(newSlide,"new")
+}
+
+
+function prevSlide() {
+      const newSlide = currentSlide === 0 ? 2 : currentSlide - 1;
+     updateSlide(newSlide);
+     console.log(currentSlide)
+     console.log(newSlide,"new")
+}
+
+    prevButton.addEventListener("click",prevSlide)
+    nextButton.addEventListener("click",nextSlide)
+</script>
