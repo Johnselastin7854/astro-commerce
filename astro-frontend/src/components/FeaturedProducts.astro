@@ -1,0 +1,81 @@
+---
+import Card from "./Card.astro";
+
+
+
+
+// import { useState, useEffect } from "react";
+
+const {title} = Astro.props;
+// const [data, setData] = useState(null);
+// const [loading, setLoading] = useState(true);
+// const [error, setError] = useState(null);
+
+// useEffect(() => {
+//   async function fetchData() {
+//     try {
+//       const res = await fetch(`/products?populate=*&[filters][type][$eq]=${type}`);
+//       const result = await res.json();
+//       setData(result);
+//       setLoading(false);
+//     } catch (err) {
+//       setError(err);
+//       setLoading(false);
+//     }
+//   }
+
+//   fetchData();
+// }, [type]);
+
+const data=[
+{
+id: 1,
+img: "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto-compress&cs=tinys rgb&w=1600",
+title: "Hat",
+oldPrice: 19,
+price: 12,
+
+},
+{
+id: 2,
+img: "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto-compress&cs=tinys rgb&w=1600",
+title: "Hat",
+oldPrice: 19,
+price: 12,
+},
+{
+id: 3,
+img: "https://images.pexels.com/photos/1972115/pexels-photo-1972115.jpeg?auto-compress&cs=tinys rgb&w=1600",
+img2: "https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto-compress&cs=tinysrgb&w=1600:",
+title: "Long Sleeve Graphic T-shirt",
+isNew: true,
+oldPrice: 19,
+price: 12,
+},
+{
+id: 4,
+img: "https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto-compress&cs=tinysrgb&w=1600:",
+title: "Long Sleeve Graphic T-shirt",
+isNew: true,
+oldPrice: 19,
+price: 12,
+},
+]
+---
+<div class="my-12 mx-24">
+  <div class="flex items-center justify-center mb-12">
+    <h1 class="text-2xl font-bold capitalize text-red-500">{title} </h1>
+  </div>
+  <div class="flex  gap-8 flex-wrap justify-center">
+    <!-- {error ? (
+      <p>Something went wrong!</p>
+    ) : loading ? (
+      <p>Loading...</p>
+    ) : (
+      data?.map((item) => <Card item={item} key={item.id} />)
+    )} -->
+   { data?.map((item) => <Card item={item} key={item.id} />)}
+
+  </div>
+</div>
+<!--  -->

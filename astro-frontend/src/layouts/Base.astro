@@ -2,11 +2,12 @@
 interface Props {
   title: string;
 }
-
+import Nav from "../components/Nav.astro"
+import Footer from "../components/Footer.astro"
 const description = "Astro and Supabase demo app";
-const { title } = Astro.props;
-const ogImageURL = new URL("hero.png", Astro.site).href;
-const canonicalURL = new URL(Astro.url).href;
+          const props = Astro.props
+          const { title } = Astro.props;
+
 ---
 
 <html lang="en" class="h-full w-full">
@@ -17,47 +18,22 @@ const canonicalURL = new URL(Astro.url).href;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta property="twitter:image" content={ogImageURL} />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="og:image" content={ogImageURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   </head>
   <body
-    class="flex flex-col h-full w-full dark:bg-zinc-900 bg-zinc-50 dark:text-zinc-100"
+    class="flex flex-col h-full w-full dark:bg-zinc-900 bg-zinc-50 dark:text-zinc-100 overflow-x-hidden"
   >
-    <!-- <nav class="border-b bg-white dark:bg-zinc-800 dark:border-zinc-700">
-      <div
-        class="flex items-baseline justify-end sm:justify-between p-4 max-w-screen-xl mx-auto"
-      >
-        <a href="/" class="hidden sm:block font-semibold dark:text-white"
-          >Astro</a
-        >
-        <div>
-          <ul class="font-medium flex items-baseline gap-8">
-            <li>
-              <a
-                href="/dashboard"
-                class="block text-zinc-900 dark:text-gray-200">Dashboard</a
-              >
-            </li>
-            <li>
-              <a href="/register" class="block text-zinc-900 dark:text-gray-200"
-                >Register</a
-              >
-            </li>
-            <li>
-              <a href="/signin" class="block text-zinc-900 dark:text-gray-200"
-                >Sign in</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
+    <Nav/>
+    <main>
     <slot />
+    </main>
+    <Footer/>
   </body>
 </html>
