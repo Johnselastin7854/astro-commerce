@@ -1,13 +1,75 @@
 ---
+import Base from '../../layouts/Base.astro';
+
 export function getStaticPaths() {
   return [
     {params: {id: '1'}},
    
-  ]
-}
+  ]}
 
-const {id} = Astro.params;
-console.log(id)
-const catId = Astro.url.pathname.split("/").pop();
-console.log(catId,"hello")
+const images = [
+    "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+    "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+];
+const props = Astro.props
+
 ---
+
+<Base title='Product'>
+    <div class="flex p-8 gap-12 flex-col lg:flex-row max-lg:items-center max-lg:justify-center">
+        <div class="flex-1  flex  gap-5">
+            <div class="flex-1">
+                <div class="md:flex flex-col gap-2 hidden ">
+                    <img src={images[0]} alt="" class="w-full h-36 object-cover cursor-pointer primary rounded-sm" />
+                    <img src={images[1]} alt="" class="w-full h-36 object-cover cursor-pointer secondary rounded-sm" />
+                </div>
+            </div>
+            <div class="flex-5">
+                <img src={images[0]} alt="" class="max-w-[500px] max-h-[800px] object-cover main-img rounded-md" />
+            </div>
+        </div>
+        <div class="flex-1 flex flex-col gap-8">
+            <h1 class="text-2xl font-bold">Product Title</h1>
+            <span class="text-3xl text-blue-600 font-medium">$29.99</span>
+            <p class="text-lg font-light text-justify">Product description goes here.</p>
+            <div class="flex items-center gap-2">
+                <button class="w-12 h-12 flex items-center justify-center border">-</button>
+                <span>1</span>
+                <button class="w-12 h-12 flex items-center justify-center border">+</button>
+            </div>
+            <button class="w-64 p-3 bg-blue-600 text-white flex items-center justify-center gap-2 font-medium rounded-sm"> Add to Cart</button>
+            <div class="flex gap-5 text-blue-600 text-sm">
+                <span>Add to Wish List</span>
+                <span>Add to Compare</span>
+            </div>
+            <div class="text-gray-100 text-sm mt-8">
+                <span>Vendor: Polo</span>
+                <span>Product Type: T-Shirt</span>
+                <span>Tag: T-Shirt, Women, Top</span>
+            </div>
+            <hr class="border-gray-300" />
+            <div class="flex flex-col gap-2 text-gray-100 text-sm">
+                <span>DESCRIPTION</span>
+                <hr class="border-gray-300" />
+                <span>ADDITIONAL INFORMATION</span>
+                <hr class="border-gray-300" />
+                <span>FAQ</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const primaryImage = document.querySelector('.primary') as HTMLImageElement;
+            const secondaryImage = document.querySelector('.secondary') as HTMLImageElement;
+            const mainImg = document.querySelector('.main-img') as HTMLImageElement;
+
+            primaryImage.addEventListener('click', () => {
+                mainImg.src = primaryImage.src;
+            });
+            secondaryImage.addEventListener('click', () => {
+                mainImg.src = secondaryImage.src;
+
+            });
+        });
+    </script>
+</Base>
