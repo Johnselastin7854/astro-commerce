@@ -1,0 +1,25 @@
+---
+
+const item = Astro.props.item;
+---
+
+<a href={`/product/${item.id}`} class="link">
+  <div class=" w-72 flex flex-col gap-2.5 mb-12 flex-wrap">
+    <div class=" relative w-full h-[400px] overflow-hidden">
+      {item?.isNew && (
+        <span class="absolute top-1 left-1 bg-white text-teal-500 px-1 py-0.5 z-10 font-medium text-xs">New Season</span>
+      )}
+      <img
+       src={item.img}
+        alt="Main"
+        class=" w-full h-full object-cover rounded-md"
+      />
+     
+    </div>
+    <h2 class="text-lg font-normal">{item?.title}</h2>
+    <div class=" flex gap-5">
+      <h3 class="text-lg font-medium text-gray-500 line-through">${item.oldPrice || item.price + 20}</h3>
+      <h3 class="text-lg font-medium">${item?.price}</h3>
+    </div>
+  </div>
+</a>
