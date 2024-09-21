@@ -1,4 +1,6 @@
 ---
+import Cart from "./Cart.astro"
+
           const props = Astro.props
 
 ---
@@ -66,12 +68,9 @@
       </ul>
     </div>
 
-    <!-- Cart Component -->
-    <!-- {isCartOpen && (
-      <div class="cart">
-        <p>Cart is Open! You have {products.length} items.</p>
-      </div>
-    )} -->
+    <div class="cart hidden">
+       <Cart/>
+    </div>
   </nav>
 
   <script>

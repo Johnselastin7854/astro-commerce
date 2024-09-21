@@ -1,0 +1,63 @@
+---
+const props = Astro.props
+
+const products = [
+  {
+    id: 1,
+    img: 'https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Product 1',
+    desc: 'This is product 1 description',
+    price: 100,
+    quantity: 2,
+  },
+  {
+    id: 2,
+    img: 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=711&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Product 2',
+    desc: 'This is product 2 description',
+    price: 50,
+    quantity: 1,
+  }
+];
+
+// Calculate total price
+const totalPrice = products.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
+
+const handleResetCart = () => {
+  // Reset cart logic here
+};
+
+const handlePayment = async () => {
+  // Handle payment logic here
+};
+---
+
+<!-- <Bas> -->
+  <div class=" absolute right-5 top-20 z-50 bg-white p-5 shadow-md rounded-bl-md">
+    <h1 class="text-gray-600 font-light text-xl mt-3 mb-4 text-center">Your Basket</h1>
+    {products.map((item) => (
+      <div class="flex items-center gap-5 mb-8" >
+        <img src={item.img} alt={item.title} class="w-20 h-24 object-cover rounded-md" />
+        <div >
+          <h1 class="font-medium text-[15px] text-gray-600">{item.title}</h1>
+          <p class="text-gray-600 mb-2 text-sm">{item.desc.substring(0, 100)}</p>
+          <div class="text-blue-600">{item.quantity} x ${item.price}</div>
+        </div>
+        <button class="delete text-red-500 text-2xl cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+	<path fill="currentColor" d="M16 9v10H8V9zm-1.5-6h-5l-1 1H5v2h14V4h-3.5zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2z" />
+</svg></button>
+      </div>
+    ))}
+    <div class="total flex justify-between font-medium text-lg mb-5 text-gray-600">
+      <span>SUBTOTAL</span>
+      <span>${totalPrice}</span>
+    </div>
+    <!-- <button class="w-64 p-3 bg-blue-600 text-white flex items-center justify-center font-medium mb-5" onclick={handlePayment}> -->
+    <button class="w-64 p-3 bg-blue-600 text-white flex items-center justify-center font-medium mb-5 rounded-sm mx-auto " >
+      PROCEED TO CHECKOUT
+    </button>
+    <!-- <span class="reset text-red-500 text-xs cursor-pointer" onclick={handleResetCart}> -->
+        <span class="reset text-red-500 text-xs cursor-pointer font-bold" >
+        Reset Cart</span>
+  </div>
+<!-- </Bas> -->
