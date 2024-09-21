@@ -1,4 +1,5 @@
 ---
+import Category from "../components/Category.astro";
 import FeaturedProducts from "../components/FeaturedProducts.astro";
 import Slider from "../components/Slider.astro";
 import Base from "../layouts/Base.astro";
@@ -9,5 +10,6 @@ const title = "Home | AstroCommerce";
 <Base title={title}>
 <Slider/>
 <FeaturedProducts title={"Feature Products"}/>
+<Category/>
 <FeaturedProducts title={"Trending  Products"}/>
 </Base>
