@@ -1,0 +1,62 @@
+---
+import Card from "./Card.astro";
+const data=[
+{
+id: 1,
+img: "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto-compress&cs=tinys rgb&w=1600",
+title: "Hat",
+oldPrice: 19,
+price: 12,
+
+},
+{
+id: 2,
+img: "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto-compress&cs=tinys rgb&w=1600",
+title: "Hat",
+oldPrice: 19,
+price: 12,
+},
+{
+id: 3,
+img: "https://images.pexels.com/photos/1972115/pexels-photo-1972115.jpeg?auto-compress&cs=tinys rgb&w=1600",
+img2: "https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto-compress&cs=tinysrgb&w=1600:",
+title: "Long Sleeve Graphic T-shirt",
+isNew: true,
+oldPrice: 19,
+price: 12,
+},
+{
+id: 4,
+img: "https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto-compress&cs=tinysrgb&w=1600:",
+title: "Long Sleeve Graphic T-shirt",
+isNew: true,
+oldPrice: 19,
+price: 12,
+},
+]
+
+
+
+// Props passed from parent component
+const { subCats, maxPrice, sort, catId } = Astro.props;
+
+// Data fetching using fetch API, similar to useFetch hook in React
+// const data = await fetch(
+//   `/products?populate=*&[filters][categories][id]=${catId}${subCats.map(
+//     (item) => `&[filters][sub_categories][id][$eq]=${item}`
+//   )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
+// ).then(res => res.json());
+
+const loading = !data; // Simple check for loading state
+---
+
+<div class="flex justify-between gap-3 flex-wrap">
+  <!-- {loading ? "loading" : data.map(item => (
+    <Card item={item} key={item.id} />
+  ))} -->
+  {data.map(item => (
+    <Card item={item} key={item.id} />
+  ))}
+</div>
+
+

@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [
+    {params: {id: '1'}},
+   
+  ]
+}
+
+const {id} = Astro.params;
+console.log(id)
+const catId = Astro.url.pathname.split("/").pop();
+console.log(catId,"hello")
+---
